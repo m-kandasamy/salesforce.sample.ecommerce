@@ -1,0 +1,38 @@
+info:
+   app:
+      name: ${info.maven.name}
+      description: ${info.maven.description}
+      env: ${environment.name}
+   maven:
+      artifactId: ^project.artifactId^
+      name: ^project.name^
+      description: ^project.description^
+      version: ^project.version^
+      parent: ^project.parent.artifactId^
+      group: ^project.parent.groupId^
+management:
+   endpoints:
+      web:
+         base-path: /manage
+server:
+  port: 8090
+spring:
+  application:
+    name: ${info.maven.name}
+environment:
+  name: default
+  
+client:
+   feign:
+      enabled: true
+      fallback:
+         enabled: false
+      timeout:
+         connection: 5000
+         read: 5000
+  
+salesforce:
+  client-id: ${SALESFORCE_CLIENT_ID}
+  client-secret: ${SALESFORCE_CLIENT_SECRET}
+  auth-url: https://login.salesforce.com/services
+  token-expiry: 60
